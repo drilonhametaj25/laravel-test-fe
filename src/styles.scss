@@ -1,0 +1,24 @@
+/* You can add global styles to this file, and also import other style files */
+@import "../node_modules/@swimlane/ngx-datatable/index.css";
+@import "../node_modules/@swimlane/ngx-datatable/themes/material.scss";
+@import "../node_modules/@swimlane/ngx-datatable/assets/icons.css";
+@import "./assets/scss/snackbar.scss";
+
+/*Primeng*/
+@import "primeicons/primeicons.css";
+@import "primeng/resources/primeng.css";
+
+/*Primeflex*/
+@import "../node_modules/primeflex/primeflex.css";
+
+/*Sakai Themes Primeng*/
+@import "assets/layout/styles/layout/layout.scss";
+
+html,
+body {
+  height: 100%;
+}
+body {
+  margin: 0;
+  font-family: Roboto, "Helvetica Neue", sans-serif;
+}

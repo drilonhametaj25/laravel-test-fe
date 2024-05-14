@@ -1,0 +1,73 @@
+<full-calendar [options]="calendarOptions"></full-calendar>
+<p-dialog
+  header="Modifica Impostazioni"
+  [(visible)]="openCalendarSetting"
+  [modal]="true"
+  [style]="{ width: '50%', height: '30%' }"
+  [baseZIndex]="99999"
+  [contentStyle]="{ overflow: 'visible' }"
+  [draggable]="false"
+  [resizable]="false"
+>
+  <div class="m-0 flex grid">
+    <div class="col-12 justify-content-center flex mb-2">
+      Modifica impostazioni calendario
+    </div>
+    <div class="col-6 justify-content-end align-items-center flex mb-2">
+      <span>Orario minimo</span>
+    </div>
+    <div class="col-6 justify-content-start flex mb-2">
+      <span class="w-full">
+        <p-dropdown
+          [style]="{ width: '70%' }"
+          [options]="calendarSlotMinTimeOptions"
+          [(ngModel)]="calendarSetting.slotMinTime"
+          optionLabel="label"
+          optionValue="value"
+          placeholder="Seleziona l'orario giornaliero minimo"
+          name="slotMinTime"
+        ></p-dropdown>
+      </span>
+    </div>
+    <div class="col-6 justify-content-end align-items-center flex mb-2">
+      <span>Orario massimo</span>
+    </div>
+    <div class="col-6 justify-content-start flex mb-2">
+      <span class="w-full">
+        <p-dropdown
+          [style]="{ width: '70%' }"
+          [options]="calendarSlotMaxTimeOptions"
+          [(ngModel)]="calendarSetting.slotMaxTime"
+          optionLabel="label"
+          optionValue="value"
+          placeholder="Seleziona l'orario giornaliero massimo"
+          name="slotMaxTime"
+        ></p-dropdown>
+      </span>
+    </div>
+    <div class="col-6 justify-content-end align-items-center flex mb-2">
+      <span>Durata di uno slot</span>
+    </div>
+    <div class="col-6 justify-content-start flex mb-2">
+      <span class="w-full">
+        <p-dropdown
+          [style]="{ width: '70%' }"
+          [options]="calendarSlotDurationTimeOptions"
+          [(ngModel)]="calendarSetting.slotDuration"
+          optionLabel="label"
+          optionValue="value"
+          placeholder="Seleziona la durata di uno slot"
+          name="slotDuration"
+        ></p-dropdown>
+      </span>
+    </div>
+  </div>
+  <ng-template pTemplate="footer">
+    <p-button
+      icon="pi pi-check"
+      label="Salva"
+      (click)="onUpdateCalendarSetting()"
+    >
+    </p-button>
+  </ng-template>
+</p-dialog>

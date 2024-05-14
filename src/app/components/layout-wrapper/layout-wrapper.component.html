@@ -1,0 +1,65 @@
+<div [class.example-is-mobile]="mobileQuery.matches">
+  <!--<mat-toolbar color="primary" class="example-toolbar justify-content-between">
+    <button class="mr-8" mat-icon-button (click)="snav && snav.toggle()">
+      <mat-icon>menu</mat-icon>
+    </button>
+    <div class="logo"></div>
+    <div [matMenuTriggerFor]="menu" class="flex align-items-center" *ngIf="user">
+      <button mat-icon-button style="margin-top: 6px">
+        <mat-icon>account_circle</mat-icon>
+      </button>
+      <span [matTooltip]="user.email || ''" class="ml-4 uppercase">{{formattedName}}</span> 
+    </div>
+  </mat-toolbar>-->
+  <div class="grid">
+    <div class="col-12">
+      <div class="card layout-wrapper-card">
+        <mat-sidenav-container
+          autosize
+          class="example-sidenav-container"
+          [style.marginTop.px]="mobileQuery.matches ? 56 : 0"
+        >
+          <mat-sidenav
+            #snav
+            [mode]="mobileQuery.matches ? 'over' : 'side'"
+            [fixedInViewport]="mobileQuery.matches"
+            fixedTopGap="56"
+          >
+            <mat-nav-list>
+              <app-nested-menu
+                [small]="collapse"
+                (afterItemClicked)="snav.toggle()"
+                *ngFor="let item of items"
+                [item]="item"
+              ></app-nested-menu>
+            </mat-nav-list>
+            <mat-divider></mat-divider>
+            <mat-divider></mat-divider>
+          </mat-sidenav>
+
+          <mat-sidenav-content
+            [style]="
+              isCalendarModule
+                ? 'overflow: hidden !important'
+                : 'overflow: auto'
+            "
+          >
+            <router-outlet></router-outlet>
+            <mat-menu #menu="matMenu">
+              <span disabled mat-menu-item>{{ user.email }}</span>
+              <mat-divider></mat-divider>
+              <button title="Esci" mat-menu-item [disabled]="!user.superAdmin">
+                <a [routerLink]="['/private/users', user._id]">
+                  <mat-icon>manage_accounts</mat-icon> Profile
+                </a>
+              </button>
+              <button (click)="logout()" title="Esci" mat-menu-item>
+                <span> <mat-icon>logout</mat-icon> Logout </span>
+              </button>
+            </mat-menu>
+          </mat-sidenav-content>
+        </mat-sidenav-container>
+      </div>
+    </div>
+  </div>
+</div>

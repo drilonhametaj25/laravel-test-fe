@@ -1,0 +1,47 @@
+<mat-toolbar color="accent" class="example-toolbar justify-content-center">
+  <div class="logo"></div>
+</mat-toolbar>
+<app-view-frame
+  [loading]="false"
+  [disableBack]="true"
+  [disableSidebar]="true"
+  [heading]="'ERROR'"
+  [subTitle]="routeParams?.url ? 'Error in' + routeParams?.url + ' page' : ''"
+  viewMode="index"
+  [enableNew]="false"
+>
+  <ng-container content>
+    <div class="error-container">
+      <div *ngIf="routeParams.message">
+        <h1 *ngIf="routeParams?.status">
+          ERROR {{ routeParams?.status }}
+          <span *ngIf="routeParams.name"> - {{ routeParams.name }}</span>
+        </h1>
+        <h3 *ngIf="routeParams?.message">{{ routeParams?.message }}</h3>
+      </div>
+
+      <div *ngIf="!routeParams && !data">
+        <h1>Unknown error, sorry :(</h1>
+        <button mat-stroked-button [routerLink]="'/login'">Go to login</button>
+      </div>
+
+      <div class="pre-container" *ngIf="routeParams?.stack">
+        <pre>
+					{{ this.routeParams.stack | json }}
+								</pre>
+      </div>
+      <button
+        class="mr-4"
+        mat-stroked-button
+        [routerLink]="routeParams?.url"
+        *ngIf="routeParams?.url && routeParams.status !== '404'"
+      >
+        Retry {{ routeParams?.url }}
+      </button>
+
+      <button color="accent" mat-raised-button routerLink="/login">
+        Go to login
+      </button>
+    </div>
+  </ng-container>
+</app-view-frame>

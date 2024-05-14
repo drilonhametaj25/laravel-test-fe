@@ -1,0 +1,23 @@
+
+.snackbar-custom {
+  margin-top: 74px !important;
+  color: white;
+  button {
+    color: white;
+  }
+}
+.snackbar-info {
+  background-color: #558855;
+}
+
+.snackbar-warn {
+  color: #292929;
+  background-color: #e0a58e;
+  button {
+    color: #292929;
+  }
+}
+
+.snackbar-error {
+  background-color: #a10f0f;
+}

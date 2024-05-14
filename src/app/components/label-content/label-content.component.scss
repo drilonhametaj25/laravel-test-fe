@@ -1,0 +1,22 @@
+
+.index {
+  &__list {
+    position: relative;
+    z-index: 10;
+
+    &.attached {
+      transform: rotate(-90deg) translateY(-200%);
+      position: fixed;
+      background-color: white;
+      padding-top: 10px;
+      top: 20%;
+    }
+    &.bottomed {
+      position: absolute;
+      left: 0;
+      bottom: 0;
+      left: 15px;
+      width: calc(100% - 32px);
+    }
+  }
+}

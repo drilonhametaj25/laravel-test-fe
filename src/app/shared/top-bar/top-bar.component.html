@@ -1,0 +1,34 @@
+<div class="grid align-items-center mt-0 surface-border border-bottom-1">
+  <div class="col-1 text-left">
+    <p-button
+      *ngIf="toogleMenu._opened"
+      icon="pi pi-caret-left"
+      styleClass="p-button-link"
+      (onClick)="toogleMenu && toogleMenu.toggle()"
+    ></p-button>
+    <p-button
+      *ngIf="!toogleMenu._opened"
+      icon="pi pi-bars"
+      styleClass="p-button-link"
+      (onClick)="toogleMenu && toogleMenu.toggle()"
+    ></p-button>
+  </div>
+  <div class="col-11 grid mt-0 align-items-center justify-content-end">
+    <span class="p-input-icon-left">
+      <i class="pi pi-search"></i>
+      <input
+        type="text"
+        pInputText
+        [(ngModel)]="searchValue"
+        class="p-inputtext-sm border-round-3xl"
+      />
+    </span>
+    <p-button icon="pi pi-user" styleClass="p-button-link"></p-button>
+    <p-button icon="pi pi-bell" styleClass="p-button-link"></p-button>
+    <p-button
+      icon="pi pi-sign-out"
+      styleClass="p-button-link"
+      (onClick)="onLogout()"
+    ></p-button>
+  </div>
+</div>

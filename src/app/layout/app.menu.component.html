@@ -1,0 +1,29 @@
+<ul class="layout-menu">
+  <ng-container *ngFor="let item of menuItems; let i = index">
+    <li
+      app-menuitem
+      [item]="item"
+      [index]="i"
+      [root]="true"
+    ></li>
+    <li *ngIf="item.separator" class="menu-separator"></li>
+  </ng-container>
+  <li *ngIf="displayAllItems">
+    <a href="https://www.primefaces.org/primeblocks-ng/#/">
+      <img
+        src="assets/layout/images/{{
+          layoutService.config.colorScheme === 'light'
+            ? 'banner-primeblocks'
+            : 'banner-primeblocks-dark'
+        }}.png"
+        alt="Prime Blocks"
+        class="w-full mt-3"
+      />
+    </a>
+  </li>
+  <li class="text-center mt-2">
+    <!-- <p-button (click)="changeItems()">
+      {{ displayAllItems ? "REDUCE" : "SEE ALL" }}
+    </p-button> -->
+  </li>
+</ul>

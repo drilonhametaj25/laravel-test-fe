@@ -1,0 +1,49 @@
+table {
+  width: 100%;
+}
+
+th,
+td {
+  padding: 10px !important;
+}
+
+tr {
+  &:hover {
+    background-color: #F7F7F7;
+  }
+}
+mat-form-field {
+  width: 40%;
+}
+
+.text-right {
+  text-align: right !important;
+}
+
+table {
+  width: 100%;
+}
+.spinner-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: #fafafa;
+  box-shadow: 0 5px 5px -3px rgba(0, 0, 0, 0.2),
+    0 8px 10px 1px rgba(0, 0, 0, 0.14), 0 3px 14px 2px rgba(0, 0, 0, 0.12);
+}
+
+.mat-column-Azioni {
+  word-wrap: break-word !important;
+  white-space: unset !important;
+  flex: 0 0 128px !important;
+  width: 128px !important;
+  overflow-wrap: break-word;
+  word-wrap: break-word;
+
+  word-break: break-word;
+
+  -ms-hyphens: auto;
+  -moz-hyphens: auto;
+  -webkit-hyphens: auto;
+  hyphens: auto;
+}

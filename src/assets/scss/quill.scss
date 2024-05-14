@@ -1,0 +1,81 @@
+@import "~quill/dist/quill.core.css";
+@import "~quill/dist/quill.bubble.css";
+@import "~quill/dist/quill.snow.css";
+
+/*
+ * QUILL - SAMPLE OVERRIDES
+ */
+
+.ql-snow.ql-toolbar button,
+.ql-snow .ql-toolbar button {
+  background: none;
+  border: none;
+  cursor: pointer;
+  display: inline-block;
+  float: left;
+  height: 20px;
+  padding: 3px 5px;
+  width: 22px;
+}
+.ql-toolbar.ql-snow .ql-formats {
+  margin-right: 8px;
+}
+
+quill-editor {
+  &.ng-invalid {
+    .ql-container,
+    .ql-toolbar {
+      border: 1px solid #f44336;
+    }
+  }
+}
+.ql-toolbar.ql-snow {
+  border: 1px solid #ccc;
+  box-sizing: border-box;
+  font-family: "Helvetica Neue", "Helvetica", "Arial", sans-serif;
+  padding: 4px;
+}
+quill-editor {
+  display: block;
+}
+
+.ql-editor:focus {
+  border: 1px solid #80bdff !important;
+  box-shadow: 0 0 0 0.2rem rgba(0, 123, 255, 0.25) !important;
+}
+
+/* Set dropdown font-families */
+
+[quill-editor-toolbar] .ql-font span[data-label="Aref Ruqaa"]::before {
+  font-family: "Aref Ruqaa";
+}
+
+[quill-editor-toolbar] .ql-font span[data-label="Mirza"]::before {
+  font-family: "Mirza";
+}
+
+[quill-editor-toolbar] .ql-font span[data-label="Roboto"]::before {
+  font-family: "Roboto";
+}
+
+/* Set content font-families */
+
+.ql-font-mirza {
+  font-family: "Mirza";
+}
+
+.ql-font-aref {
+  font-family: "Aref Ruqaa";
+}
+
+.ql-font-roboto {
+  font-family: "Roboto";
+}
+
+.din-quill-input {
+  letter-spacing: 1px;
+  font-size: 16px;
+  margin-bottom: 8px;
+  display: inline-block;
+  color: rgba(62, 62, 62, 0.6);
+}

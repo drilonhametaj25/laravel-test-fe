@@ -1,0 +1,135 @@
+<mat-toolbar
+  class="mb-4 py-2 flex flex-col lg:flex-row align-items-start lg:align-items-center justify-content-start h-full lg:h-auto"
+>
+  <p class="m-0 font-bold text-[14px]">
+    <span>{{ prefix }}</span>
+    <ng-container *ngIf="!isHtml; else htmlTemp">{{
+      label | trim : 110
+    }}</ng-container>
+
+    <ng-template #htmlTemp>
+      <div class="html-title" [innerHtml]="label | trim : 72"></div>
+    </ng-template>
+  </p>
+  <p *ngIf="rightText" class="m-0 ml-4 font-light text-[14px]">
+    {{ rightText }}
+  </p>
+  <span class="example-spacer"></span>
+
+  <div class="flex align-items-center ml-auto">
+    <ng-container *ngIf="!localEditMode">
+      <ng-content></ng-content>
+    </ng-container>
+
+    <div class="grow-0 flex align-items-center" *ngIf="!onlyChildren">
+      <div class="flex align-items-center">
+        <ng-container *ngIf="localEditMode; else saveTemplate">
+          <button
+            type="button"
+            (click)="
+              $event.stopPropagation();
+              discardClick.emit(true);
+              localEditMode = false
+            "
+            mat-stroked-button
+            color="warn"
+            style="margin-right: 16px; background-color: white"
+          >
+            Annulla
+          </button>
+          <!-- <p class="text-[12px] hover:underline font-light uppercase m-0 ml-4 cursor-pointer"
+            (click)="
+              $event.stopPropagation();
+              discardClick.emit(true);
+              localEditMode = false
+            ">
+            Annulla
+          </p> -->
+          <button
+            type="button"
+            (click)="
+              $event.stopPropagation();
+              saveClick.emit(true);
+              localEditMode = false
+            "
+            mat-stroked-button
+            color="accents"
+            style="background-color: white"
+          >
+            Salva
+          </button>
+          <!-- <p
+            class="text-[12px] hover:underline font-light uppercase m-0 ml-4 cursor-pointer"
+            (click)="
+              $event.stopPropagation();
+              saveClick.emit(true);
+              localEditMode = false
+            "
+          >
+            Salva
+          </p> -->
+        </ng-container>
+        <ng-template #saveTemplate>
+          <button
+            type="button"
+            mat-icon-button
+            [matMenuTriggerFor]="menu"
+            (click)="$event.stopPropagation()"
+            aria-label="Example icon-button with a menu"
+          >
+            <mat-icon>more_vert</mat-icon>
+          </button>
+          <mat-menu #menu="matMenu">
+            <button
+              *ngIf="enabledFields.includes('edit')"
+              type="button"
+              mat-menu-item
+              (click)="editClick.emit(false); localEditMode = true"
+            >
+              <mat-icon>edit</mat-icon>
+              <span>Modifica</span>
+            </button>
+            <button
+              *ngIf="enabledFields.includes('duplicate')"
+              [dinamoConfirm]="dinamoConfirmDuplicateMessage"
+              type="button"
+              mat-menu-item
+              (click)="duplicateClick.emit()"
+            >
+              <mat-icon>content_copy</mat-icon>
+              <span>Duplica</span>
+            </button>
+            <button
+              *ngIf="enabledFields.includes('delete')"
+              [dinamoConfirm]="dinamoConfirmDeleteMessage"
+              type="button"
+              mat-menu-item
+              (click)="deleteClick.emit()"
+            >
+              <mat-icon>delete</mat-icon>
+              <span>Elimina</span>
+            </button>
+          </mat-menu>
+          <!-- <p
+            class="text-[12px] hover:underline font-light uppercase m-0 ml-4 cursor-pointer"
+            (click)="editClick.emit(false); localEditMode = true"
+          >
+            Modifica
+          </p>
+          <p
+            class="text-[12px] hover:underline font-light uppercase m-0 ml-4 cursor-pointer"
+            (click)="duplicateClick.emit()"
+          >
+            Duplica
+          </p>
+          <p
+            class="text-[12px] hover:underline font-light uppercase m-0 ml-4 cursor-pointer"
+            (click)="deleteClick.emit()"
+          >
+            Elimina
+          </p> -->
+        </ng-template>
+      </div>
+    </div>
+  </div>
+</mat-toolbar>

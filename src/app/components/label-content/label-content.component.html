@@ -1,0 +1,19 @@
+<div
+  #container
+  class="index border shadow-lg shadow-gray-100 rounded my-4 relative"
+>
+  <!-- <div
+    #index
+    class="index__list flex align-items-center"
+    [ngClass]="[
+      mode,
+      mode === 'attached'
+        ? 'border border-b-none shadow-lg shadow-gray-100 p-4 rounded-t-lg'
+        : ''
+    ]"
+  >
+    <p [ngClass]="[mode === 'attached' ? 'mb-0' : 'hidden']">{{ label }}</p>
+  </div> -->
+
+  <ng-content></ng-content>
+</div>

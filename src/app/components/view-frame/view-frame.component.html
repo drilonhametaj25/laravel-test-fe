@@ -1,0 +1,141 @@
+<div
+  fxLayout="row wrap"
+  fxLayoutAlign="center center"
+  *ngIf="loading; else loadedView"
+  class="loader"
+>
+  <div fxFlex="shrink">
+    <mat-spinner></mat-spinner>
+  </div>
+</div>
+<ng-template #loadedView>
+  <div class="view-wrap lg:px-4 my-4 container mx-auto">
+    <div *ngIf="!disableBack" class="mb-4 px-4 lg:px-0">
+      <button routerLink=".." mat-stroked-button color="primary">
+        <mat-icon>arrow_back</mat-icon>
+      </button>
+    </div>
+
+    <div class="content-wrap h-full p-4 rounded-md bg-white shadow-sm">
+      <div
+        *ngIf="heading || subTitle"
+        class="flex align-items-start justify-content-between justify-content-between mb-2"
+      >
+        <div>
+          <p *ngIf="heading" class="font-semi text-xl lg:text-2xl">
+            {{ heading }}
+          </p>
+          <p *ngIf="subTitle" class="text-sm text-gray-400">{{ subTitle }}</p>
+        </div>
+        <div *ngIf="newButtonPath && enableNew && viewMode === 'index'">
+          <button
+            [routerLink]="newButtonPath"
+            pButton
+            pRipple
+            class="p-button-danger"
+            matTooltip="Aggiungi"
+          >
+            <mat-icon>library_add</mat-icon
+            >{{ newButtonText || "Create new item" }}
+          </button>
+        </div>
+        <div *ngIf="actionButton && viewMode === 'index'">
+          <button
+            (click)="onActionButtonChange()"
+            mat-raised-button
+            color="accent"
+          >
+            {{ newButtonText }}
+          </button>
+        </div>
+      </div>
+      <ng-container *ngIf="!isIndex">
+        <div class="grid">
+          <div>
+            <ng-template [ngTemplateOutlet]="mainContent"></ng-template>
+          </div>
+        </div>
+      </ng-container>
+      <ng-container *ngIf="isIndex">
+        <div>
+          <div
+            class="col-span-12 lg:col-span-10 order-1 lg:order-0"
+            [class.lg:col-span-10]="!disableSidebar"
+          >
+            <ng-template [ngTemplateOutlet]="mainContent"></ng-template>
+          </div>
+          <div
+            *ngIf="!disableSidebar"
+            class="col-span-12 lg:col-span-2 order-0 lg:order-1"
+          >
+            <ng-container *ngTemplateOutlet="sidebarContent"> </ng-container>
+          </div>
+        </div>
+      </ng-container>
+
+      <!-- <div
+        class="flex flex-col md:flex-row w-full md:p-[48px] bg-white">
+        <div
+          class="content md:py-8 md:px-4 flex flex-col w-full"
+          [class.hasNew]="enableNew">
+          <div>
+            <button routerLink=".." *ngIf="!disableBack" mat-raised-button
+              color="accents" style="margin-bottom: 32px">
+              <mat-icon>arrow_back</mat-icon>
+            </button>
+            <div
+              class="mb flex flex-row align-items-center justify-content-between mb-8">
+
+              <div class="flex-half">
+                <p class="mat-h1">{{ heading }}</p>
+                <p class="mat-h3 font-light" *ngIf="!subtitleAsTemplate; else subtitleTemplate">{{ subTitle }}
+                </p>
+                <ng-template #subtitleTemplate>
+                  <ng-content select="[subtitleTemplate]"></ng-content>
+                </ng-template>
+              </div>
+              <div class="flex-half"
+                style="text-align: right">
+                <div *ngIf="enableNew && disableSidebar"
+                  class="head flex flex-wrap">
+                  <div class="grow-0">
+                    <button [routerLink]="newButtonPath"
+                      mat-raised-button color="primary">
+                      {{ newButtonText }}
+                    </button>
+                  </div>
+                </div>
+                <ng-content select="[headActions]">
+                </ng-content>
+              </div>
+            </div>
+          </div>
+          <ng-content select="[content]"></ng-content>
+        </div>
+      </div> -->
+
+      <!-- <div *ngIf="!disableSidebar && windowWith > 768"
+        stickySidebar containerSelector=".content-wrap"
+        innerWrapperSelector=".sidebar__inner"
+        class="sidebar hidden md:block">
+        <ng-container *ngTemplateOutlet="sidebarContent">
+        </ng-container>
+      </div> -->
+      <!-- <div *ngIf="!disableSidebar && windowWith < 768"
+        class="sidebar md:hidden">
+        <ng-container *ngTemplateOutlet="sidebarContent">
+        </ng-container>
+      </div> -->
+    </div>
+  </div>
+</ng-template>
+
+<ng-template #sidebarContent>
+  <div id="view-frame-cmp" class="px-6 py-4 h-full rounded-sm mat-elevation-z1">
+    <ng-content select="[sidebar]"></ng-content>
+  </div>
+</ng-template>
+
+<ng-template #mainContent>
+  <ng-content select="[content]"></ng-content>
+</ng-template>

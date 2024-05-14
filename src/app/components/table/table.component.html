@@ -1,0 +1,217 @@
+<ng-container>
+  <!-- Filter -->
+  <ng-container *ngIf="isFilterable" [matColumnDef]="'Azioni'">
+    <mat-form-field>
+      <mat-label>Cerca</mat-label>
+      <input
+        matInput
+        (keyup)="applyFilter($event)"
+        [value]="keyword"
+        placeholder="Cerca"
+      />
+    </mat-form-field>
+  </ng-container>
+
+  <!-- Loading Spinner -->
+  <div class="h-[4px]">
+    <mat-progress-bar *ngIf="loading" mode="indeterminate"> </mat-progress-bar>
+  </div>
+  <ng-content select="[filters]"></ng-content>
+  <!-- Table -->
+  <table
+    mat-table
+    [dataSource]="tableDataSource"
+    matSort
+    (matSortChange)="sortTable($event)"
+  >
+    <!-- action column -->
+    <ng-container *ngIf="actions.length" [matColumnDef]="'Azioni'">
+      <th mat-header-cell *matHeaderCellDef>Azioni</th>
+      <td mat-cell *matCellDef="let element" [id]="'Azioni'">
+        <div class="grid grid-cols-3 gap-5">
+          <button
+            [dinamoConfirm]="dinamoConfirmDuplicateMessage"
+            matTooltip="Duplica elemento"
+            color="secondary"
+            *ngIf="actions.includes('duplicate')"
+            (click)="emitDuplicateAction.emit(element)"
+            mat-icon-button
+          >
+            <mat-icon>{{ "content_copy" }}</mat-icon>
+          </button>
+          <button
+            [matTooltip]="
+              actions.includes('edit')
+                ? 'Modifica elemento'
+                : 'Dettagli elemento'
+            "
+            color="secondary"
+            *ngIf="actions.includes('edit') || actions.includes('view')"
+            (click)="emitEditAction.emit(element)"
+            mat-icon-button
+          >
+            <mat-icon>{{
+              actions.includes("edit") ? "edit" : "visibility"
+            }}</mat-icon>
+          </button>
+          <button
+            matTooltip="Elimina elemento"
+            [dinamoConfirm]="dinamoConfirmDeleteMessage"
+            mat-icon-button
+            color="warn"
+            *ngIf="actions.includes('delete')"
+            (click)="emitDeleteAction.emit(element)"
+          >
+            <mat-icon>{{ "delete" }}</mat-icon>
+          </button>
+        </div>
+      </td>
+    </ng-container>
+
+    <ng-container
+      *ngFor="let tableColumn of tableColumns"
+      [matColumnDef]="tableColumn.name"
+    >
+      <!-- if sortable column header -->
+      <ng-container *ngIf="tableColumn.isSortable; else notSortable">
+        <th
+          [ngClass]="[
+            tableColumn.hideOnMobile ? 'hidden lg:table-cell' : 'table-cell'
+          ]"
+          mat-header-cell
+          *matHeaderCellDef
+          [mat-sort-header]="tableColumn.name"
+          [arrowPosition]="
+            tableColumn.position === 'right' ? 'before' : 'after'
+          "
+        >
+          {{ tableColumn.name }}
+        </th>
+      </ng-container>
+      <!-- else not sortable -->
+      <ng-template #notSortable>
+        <th
+          [ngClass]="[
+            tableColumn.hideOnMobile ? 'hidden lg:table-cell' : 'table-cell'
+          ]"
+          mat-header-cell
+          *matHeaderCellDef
+          [class.text-right]="tableColumn.position == 'right'"
+        >
+          {{ tableColumn.name }}
+        </th>
+      </ng-template>
+
+      <!-- column data -->
+      <td
+        mat-cell
+        *matCellDef="let element"
+        [class.text-right]="tableColumn.position == 'right'"
+        [ngClass]="[
+          tableColumn.hideOnMobile ? 'hidden lg:table-cell' : 'table-cell'
+        ]"
+      >
+        <ng-container *ngIf="tableColumn.linkUrl; else notLinkCol">
+          <a
+            class="hover:underline"
+            [routerLink]="[
+              tableColumn.linkUrl,
+              tableColumn.linkParams ? tableColumn.linkParams(element) : ''
+            ]"
+          >
+            <ng-template
+              [ngTemplateOutlet]="columnContent"
+              [ngTemplateOutletContext]="{
+                $implicit: element,
+                tableColumn: tableColumn
+              }"
+            >
+            </ng-template>
+          </a>
+        </ng-container>
+        <ng-template #notLinkCol>
+          <ng-template
+            [ngTemplateOutlet]="columnContent"
+            [ngTemplateOutletContext]="{
+              $implicit: element,
+              tableColumn: tableColumn
+            }"
+          >
+          </ng-template>
+          <!-- <ng-container
+            *ngIf="!tableColumn.renderFunction && !tableColumn.renderHtmlFunction; else renderTemplate">
+            {{ element | dataPropertyGetter:
+            tableColumn.dataKey }}
+          </ng-container>
+          <ng-template #renderTemplate>
+            <ng-container
+              *ngIf="tableColumn.renderHtmlFunction">
+              <div
+                [innerHtml]="tableColumn.renderHtmlFunction(element)">
+              </div>
+            </ng-container>
+            <ng-container
+              *ngIf="tableColumn?.renderFunction">
+              {{ tableColumn?.renderFunction(element) }}
+            </ng-container>
+          </ng-template> -->
+        </ng-template>
+      </td>
+    </ng-container>
+    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+    <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
+  </table>
+
+  <!-- Pagination -->
+  <mat-paginator
+    *ngIf="isPageable"
+    [length]="totalRecords"
+    [pageSizeOptions]="paginationSizes"
+    [pageSize]="pageSize"
+    showFirstLastButtons
+    (page)="onPageChanged.emit($event)"
+  >
+  </mat-paginator>
+</ng-container>
+
+<ng-template #columnContent let-el let-tableColumn="tableColumn">
+  <ng-container *ngIf="tableColumn.isIcon">
+    <button
+      (click)="tableColumn.cb ? tableColumn.cb(el) : null"
+      color="secondary"
+      mat-icon-button
+    >
+      <mat-icon>{{ tableColumn.dataKey }}</mat-icon>
+    </button>
+  </ng-container>
+
+  <ng-container
+    *ngIf="
+      !tableColumn.isIcon &&
+        !tableColumn.renderFunction &&
+        !tableColumn.renderHtmlFunction;
+      else renderTemplate
+    "
+  >
+    <span
+      (click)="tableColumn.cb ? tableColumn.cb(el) : null"
+      [ngClass]="[tableColumn.bold ? 'font-bold' : '']"
+    >
+      {{ el | dataPropertyGetter : tableColumn.dataKey }}
+    </span>
+  </ng-container>
+  <ng-template #renderTemplate>
+    <ng-container *ngIf="tableColumn.renderHtmlFunction">
+      <div
+        (click)="tableColumn.cb ? tableColumn.cb(el) : null"
+        [innerHtml]="tableColumn.renderHtmlFunction(el)"
+      ></div>
+    </ng-container>
+    <div
+      (click)="tableColumn.cb ? tableColumn.cb(el) : null"
+      *ngIf="tableColumn?.renderFunction"
+    >
+      {{ tableColumn?.renderFunction(el) }}
+    </div>
+  </ng-template>
+</ng-template>

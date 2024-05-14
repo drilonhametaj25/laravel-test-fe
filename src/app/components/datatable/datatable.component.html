@@ -1,0 +1,66 @@
+<ngx-datatable [rows]="rows" [ngClass]="setClasses()" [headerHeight]="40"
+  [footerHeight]="50" rowHeight="auto" [columnMode]="columnMode" (sort)="onSort($event)" [externalSorting]="true"
+  #dataTable>
+  <!-- Row Detail Template -->
+  <ngx-datatable-row-detail [template]="detailTemplate " [rowHeight]="100" (toggle)="onDetailToggle($event)">
+
+  </ngx-datatable-row-detail>
+
+  <ng-container *ngIf="detailTemplate">
+    <ngx-datatable-column [width]="50" [resizeable]="false" [sortable]="false" [draggable]="false"
+      [canAutoResize]="false">
+      <ng-template let-row="row" let-expanded="expanded" ngx-datatable-cell-template>
+        <button *ngIf="!expanded" (click)="toggleExpandRow(row)">+</button>
+        <button *ngIf="expanded" (click)="toggleExpandRow(row)">-</button>
+      </ng-template>
+    </ngx-datatable-column>
+  </ng-container>
+
+  <ngx-datatable-column [cellTemplate]="col.cellTemplate" *ngFor="let col of cols" [name]="col.name" [prop]="col.prop"
+    [sortable]="col.sortable" [frozenRight]="col.frozenRight" [frozenLeft]="col.frozenLeft" [width]="col.width"
+    [minWidth]="col.minWidth" [maxWidth]="col.maxWidth" [flexGrow]="col.flexGrow">
+
+  </ngx-datatable-column>
+
+  <ngx-datatable-column *ngIf="showActionButtons" name="Actions" [frozenRight]="true" [sortable]="false"
+    [draggable]="false" [resizeable]="false" [canAutoResize]="false" [width]="width">
+    <ng-template ngx-datatable-cell-template let-value="value" let-row="row">
+      <div class="text-right">
+
+        <button class="lg:hidden" mat-icon-button [matMenuTriggerFor]="menu" aria-label="mobile table menu">
+          <mat-icon>more_vert</mat-icon>
+        </button>
+        <mat-menu class="lg:hidden" #menu="matMenu">
+          <ng-container *ngIf="orderable">
+            <button mat-menu-item (click)="onOrderChange(row, 'up')">
+              <mat-icon>arrow_upward</mat-icon>
+              up
+            </button>
+            <button mat-menu-item (click)="onOrderChange(row, 'down')">
+              <mat-icon>arrow_downward</mat-icon>
+              down
+            </button>
+          </ng-container>
+          <button mat-menu-item [routerLink]="[editLink, row._id]">
+            <mat-icon>edit</mat-icon>
+            edit
+          </button>
+        </mat-menu>
+
+        <div class="hidden lg:block">
+          <ng-container *ngIf="orderable">
+            <button mat-icon-button (click)="onOrderChange(row, 'up')">
+              <mat-icon>arrow_upward</mat-icon>
+            </button>
+            <button mat-icon-button (click)="onOrderChange(row, 'down')">
+              <mat-icon>arrow_downward</mat-icon>
+            </button>
+          </ng-container>
+          <button [routerLink]="[editLink, row._id]" mat-icon-button>
+            <mat-icon>edit</mat-icon>
+          </button>
+        </div>
+      </div>
+    </ng-template>
+  </ngx-datatable-column>
+</ngx-datatable>

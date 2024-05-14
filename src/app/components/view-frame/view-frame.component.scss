@@ -1,0 +1,53 @@
+.head {
+  width: 100%;
+  padding: 16px 16px 0 0;
+}
+
+::ng-deep .mat-card-header-text {
+  display: none;
+}
+
+.content-wrap {
+  box-sizing: border-box;
+  &::-webkit-scrollbar {
+    display: none;
+  }
+  -ms-overflow-style: none; /* IE and Edge */
+  scrollbar-width: none; /* Firefox */
+}
+
+.view-wrap {
+  min-height: calc(100vh - 64px);
+  position: relative;
+}
+
+.sidebar {
+  // position: absolute;
+  // top: 0;
+  // right: 0;
+  width: 420px;
+  box-sizing: border-box;
+  &.hasNew {
+    padding-top: 16px;
+  }
+}
+:host-context(body.dark) {
+  .sidebar {
+    background-color: #424242;
+  }
+}
+
+.loader {
+  padding: 32px 16px;
+}
+
+mat-card {
+  padding: 0;
+}
+
+.content {
+  padding: 32px 16px;
+  &.hasNew {
+    padding-top: 16px;
+  }
+}

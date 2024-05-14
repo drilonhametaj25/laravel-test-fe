@@ -1,0 +1,91 @@
+<div class="card list-client-card">
+  <h5>Lista clienti</h5>
+  <p-dataView
+    #dv
+    [value]="breweries"
+    [paginator]="true"
+    [lazy]="true"
+    [rows]="page.size"
+    [totalRecords]="page.totalElements"
+    [first]="0"
+    (onLazyLoad)="onLazyLoad($event)"
+    filterBy="name"
+    [sortField]="sortField"
+    [sortOrder]="sortOrder"
+    layout="grid"
+    (onChangeLayout)="changeLayout($event)"
+  >
+    <ng-template pTemplate="header">
+      <div
+        class="flex flex-column md:flex-row md:justify-content-between gap-2"
+      >
+
+        <p-dataViewLayoutOptions *ngIf="!mobile"></p-dataViewLayoutOptions>
+      </div>
+      <div *ngIf="layout !== 'grid'" class="grid mt-4">
+        <div class="col-1 overflow-auto">Name</div>
+        <div class="col-1/2 overflow-auto">Type</div>
+        <div class="col-1 overflow-auto">Address</div>
+        <div class="col-1 overflow-auto">City</div>
+        <div class="col-1 overflow-auto">Province</div>
+        <div class="col-1 overflow-auto">Postal Code</div>
+        <div class="col-1 overflow-auto">Country</div>
+        <div class="col-1 overflow-auto">Longitude</div>
+        <div class="col-1 overflow-auto">Latitude</div>
+        <div class="col-1 overflow-auto">Phone</div>
+        <div class="col-1/2 overflow-auto">State</div>
+        <div class="col-1 overflow-auto">Street</div>
+        <div class="col-1/2 overflow-auto">Website</div>
+      </div>
+    </ng-template>
+    <!-- Display items in List View -->
+    <ng-template let-client pTemplate="listItem">
+      <div class="col-12">
+        <div class="flex flex-column md:flex-row align-items-center p-3 w-full">
+          <div class="col-1 overflow-auto">
+            {{ client.name }}
+          </div>
+          <div class="col-1/2 overflow-auto">{{ client.brewery_type }}</div>
+          <div class="col-1 overflow-auto">{{ client.address_1 }}</div>
+          <div class="col-1 overflow-auto">{{ client.city }}</div>
+          <div class="col-1 overflow-auto">{{ client.state_province }}</div>
+          <div class="col-1 overflow-auto">{{ client.postal_code }}</div>
+          <div class="col-1 overflow-auto">{{ client.country }}</div>
+          <div class="col-1 overflow-auto">{{ client.longitude }}</div>
+          <div class="col-1 overflow-auto">{{ client.latitude }}</div>
+          <div class="col-1 overflow-auto">{{ client.phone }}</div>
+          <div class="col-1/2 overflow-auto">{{client.state}}</div>
+          <div class="col-1 overflow-auto">{{client.street}}</div>
+          <div class="col-1/2 overflow-auto"><a href="{{ client.website_url }}">Link</a></div>
+
+        </div>
+      </div>
+    </ng-template>
+
+    <!-- Display items in Grid View -->
+    <ng-template let-client pTemplate="gridItem">
+      <div class="col-12 md:col-6 lg:col-4 mt-4">
+        <div class="card m-3 border-1 surface-border">
+          <div class="grid align-items-center justify-content-center">
+            <div class="col-4 text-center">
+              <img
+                alt="Avatar"
+                src="https://www.primefaces.org/sakai-ng/assets/demo/images/login/avatar.png"
+                class="border-circle max-w-5rem"
+              />
+            </div>
+            <div class="col-8 text-left">
+              <h3>{{ client.name }}</h3>
+            </div>
+          </div>
+          <p><b>Address: </b> {{ client.address }}</p>
+          <p><b>City: </b> {{ client.city }}</p>
+          <p><b>Province: </b> {{ client.state_province }}</p>
+          <p><b>Postal Code: </b> {{ client.postal_code }}</p>
+          <p><b>Website: </b> <a href="{{ client.website_url }}">Link</a></p>
+
+        </div>
+      </div>
+    </ng-template>
+  </p-dataView>
+</div>

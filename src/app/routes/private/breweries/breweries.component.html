@@ -1,0 +1,40 @@
+<app-view-frame
+  heading="Breweries"
+  subTitle="Lista breweries"
+  [loading]="loading"
+  [enableNew]="false"
+>
+  <ng-container content>
+    <div>
+      <form
+        class="flex flex-wrap justify-content-between mb-2 mt-2"
+        [formGroup]="form"
+      >
+        <div>
+          <span class="p-float-label">
+            <input
+              placeholder="Ragione Sociale"
+              formControlName="search"
+              type="text"
+              pInputText
+            />
+            <label for="float-input">Cerca</label>
+          </span>
+        </div>
+        <button
+          class="align-self-auto mb-2"
+          pButton
+          pRipple
+          (click)="filter()"
+        >
+          Cerca
+        </button>
+      </form>
+    </div>
+    <app-list-breweries
+      [breweries]="breweries"
+      [page]="page"
+      (onChangePage)="onChangePage($event)"
+    ></app-list-breweries>
+  </ng-container>
+</app-view-frame>

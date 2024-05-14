@@ -1,0 +1,26 @@
+<a mat-list-item *ngIf="!!item" [class.small]="small" [ngStyle]="{ 'padding-left': depth * 24 + 'px' }"
+  [ngClass]="[small ? 'py-2 pr-2' : 'py-4 pr-2']" (click)="onItemSelected(item)" [ngClass]="{
+    expanded: expanded
+  }" class="h-full py-4" [isVisibleTo]="item.isVisibleTo || []" [moduleName]="item.moduleName || ''"
+  [site]="item.site || null">
+  <mat-icon *ngIf="item.icon" class="routeIcon">{{ item.icon }}</mat-icon>
+  <span>{{ item.label }}</span>
+  <span fxFlex *ngIf="item?.children && item?.children?.length">
+    <span fxFlex></span>
+    <mat-icon [@indicatorRotate]="expanded ? 'expanded' : 'collapsed'">
+      expand_more
+    </mat-icon>
+  </span>
+</a>
+<a mat-list-item *ngIf="!!item && item.link" [class.small]="small" [ngStyle]="{ 'padding-left': depth * 24 + 'px' }"
+  [ngClass]="[small ? 'py-2 pr-2' : 'py-4 pr-2']" (click)="newLink(item)" [ngClass]="{
+    expanded: expanded
+  }" class="h-full py-4" [isVisibleTo]="item.isVisibleTo || []" [moduleName]="item.moduleName || ''"
+  [site]="item.site || null">
+  <mat-icon *ngIf="item.icon" class="routeIcon">{{ item.icon }}</mat-icon>
+  <span>{{ item.label }}</span>
+</a>
+<div *ngIf="expanded">
+  <app-nested-menu *ngFor="let child of item?.children" [item]="child" [depth]="depth + 1" [site]="child.site || null">
+  </app-nested-menu>
+</div>

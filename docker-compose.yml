@@ -1,0 +1,11 @@
+version: '3.7'
+services:
+  backend:
+    container_name: breweries-be
+    ports:
+      - 80:80
+      - 443:443
+    build:
+      context: .
+    volumes:
+      - .:/usr/src/app
