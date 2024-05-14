@@ -2496,7 +2496,7 @@ AppTopBarComponent.ɵcmp = /*@__PURE__*/_angular_core__WEBPACK_IMPORTED_MODULE_2
   },
   decls: 6,
   vars: 1,
-  consts: [[1, "layout-topbar"], ["routerLink", "/private", 1, "layout-topbar-logo"], ["src", "assets/img/favicon.png", "alt", "Erpro logo", 1, "mr-0", "h-5rem"], [1, "-ml-4"], [4, "ngIf"], [1, "p-link", "layout-menu-button", "layout-topbar-button", 3, "click"], ["menubutton", ""], [1, "pi", "pi-bars"], [1, "p-link", "layout-topbar-menu-button", "layout-topbar-button", 3, "click"], ["topbarmenubutton", ""], [1, "pi", "pi-ellipsis-v"], [1, "layout-topbar-menu", 3, "ngClass"], ["topbarmenu", ""], [1, "p-link", "layout-topbar-button", 3, "click"], [1, "pi", "pi-sign-out"]],
+  consts: [[1, "layout-topbar"], ["routerLink", "/private", 1, "layout-topbar-logo"], ["src", "assets/img/favicon.png", "alt", "Breweries logo", 1, "mr-0", "h-5rem"], [1, "-ml-4"], [4, "ngIf"], [1, "p-link", "layout-menu-button", "layout-topbar-button", 3, "click"], ["menubutton", ""], [1, "pi", "pi-bars"], [1, "p-link", "layout-topbar-menu-button", "layout-topbar-button", 3, "click"], ["topbarmenubutton", ""], [1, "pi", "pi-ellipsis-v"], [1, "layout-topbar-menu", 3, "ngClass"], ["topbarmenu", ""], [1, "p-link", "layout-topbar-button", 3, "click"], [1, "pi", "pi-sign-out"]],
   template: function AppTopBarComponent_Template(rf, ctx) {
     if (rf & 1) {
       _angular_core__WEBPACK_IMPORTED_MODULE_2__["ɵɵelementStart"](0, "div", 0)(1, "a", 1);
