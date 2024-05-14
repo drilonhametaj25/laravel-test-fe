@@ -3223,33 +3223,33 @@ LoginComponent.ɵcmp = /*@__PURE__*/_angular_core__WEBPACK_IMPORTED_MODULE_4__["
   selectors: [["app-login"]],
   decls: 22,
   vars: 3,
-  consts: [[1, "surface-ground", "flex", "align-items-center", "justify-content-center", "min-h-screen", "min-w-screen", "overflow-hidden"], [1, "flex", "flex-column", "align-items-center", "justify-content-center"], ["src", "assets/img/logo.png", "alt", "Erpro logo", 1, "mb-5", "w-9rem", "flex-shrink-0"], [2, "border-radius", "56px", "padding", "0.3rem", "background", "linear-gradient(\n          180deg,\n          var(--primary-color) 10%,\n          rgba(33, 150, 243, 0) 30%\n        )"], [1, "w-full", "surface-card", "py-8", "px-5", "sm:px-8", 2, "border-radius", "53px"], [1, "text-center", "mb-5"], [1, "text-900", "text-3xl", "font-medium", "mb-3"], [1, "text-600", "font-medium"], [3, "formGroup", "ngSubmit"], ["for", "email1", 1, "block", "text-900", "text-xl", "font-medium", "mb-2"], ["id", "email1", "type", "text", "formControlName", "email", "autofocus", "", "required", "", "placeholder", "Nome utente", "name", "email", "autocomplete", "email", "pInputText", "", 1, "w-full", "md:w-30rem", "mb-5", 2, "padding", "1rem"], ["for", "password1", 1, "block", "text-900", "font-medium", "text-xl", "mb-2"], ["id", "password1", "formControlName", "password", "required", "", "placeholder", "Password", "name", "password", "type", "password", "autocomplete", "current-password", "styleClass", "mb-5", "inputStyleClass", "w-full p-3 md:w-30rem", 3, "toggleMask", "feedback"], [1, "flex", "align-items-center", "justify-content-between", "mb-5", "gap-5"], [1, "font-medium", "no-underline", "ml-2", "text-right", "cursor-pointer", 2, "color", "var(--primary-color)"], ["pButton", "", "pRipple", "", "label", "Sign In", "type", "submit", 1, "w-full", "p-3", "text-xl"]],
+  consts: [[1, "surface-ground", "flex", "align-items-center", "justify-content-center", "min-h-screen", "min-w-screen", "overflow-hidden"], [1, "flex", "flex-column", "align-items-center", "justify-content-center"], [2, "border-radius", "56px", "padding", "0.3rem", "background", "linear-gradient(\n          180deg,\n          var(--primary-color) 10%,\n          rgba(33, 150, 243, 0) 30%\n        )"], [1, "w-full", "surface-card", "py-8", "px-5", "sm:px-8", 2, "border-radius", "53px"], [1, "text-center", "mb-5"], [1, "text-900", "text-3xl", "font-medium", "mb-3"], [1, "text-600", "font-medium"], [3, "formGroup", "ngSubmit"], ["for", "email1", 1, "block", "text-900", "text-xl", "font-medium", "mb-2"], ["id", "email1", "type", "text", "formControlName", "email", "autofocus", "", "required", "", "placeholder", "Nome utente", "name", "email", "autocomplete", "email", "pInputText", "", 1, "w-full", "md:w-30rem", "mb-5", 2, "padding", "1rem"], ["for", "password1", 1, "block", "text-900", "font-medium", "text-xl", "mb-2"], ["id", "password1", "formControlName", "password", "required", "", "placeholder", "Password", "name", "password", "type", "password", "autocomplete", "current-password", "styleClass", "mb-5", "inputStyleClass", "w-full p-3 md:w-30rem", 3, "toggleMask", "feedback"], [1, "flex", "align-items-center", "justify-content-between", "mb-5", "gap-5"], [1, "font-medium", "no-underline", "ml-2", "text-right", "cursor-pointer", 2, "color", "var(--primary-color)"], ["pButton", "", "pRipple", "", "label", "Sign In", "type", "submit", 1, "w-full", "p-3", "text-xl"]],
   template: function LoginComponent_Template(rf, ctx) {
     if (rf & 1) {
       _angular_core__WEBPACK_IMPORTED_MODULE_4__["ɵɵelementStart"](0, "div", 0)(1, "div", 1);
-      _angular_core__WEBPACK_IMPORTED_MODULE_4__["ɵɵelement"](2, "img", 2);
-      _angular_core__WEBPACK_IMPORTED_MODULE_4__["ɵɵelementStart"](3, "div", 3)(4, "div", 4)(5, "div", 5)(6, "div", 6);
+      _angular_core__WEBPACK_IMPORTED_MODULE_4__["ɵɵtext"](2, " Breweries.it ");
+      _angular_core__WEBPACK_IMPORTED_MODULE_4__["ɵɵelementStart"](3, "div", 2)(4, "div", 3)(5, "div", 4)(6, "div", 5);
       _angular_core__WEBPACK_IMPORTED_MODULE_4__["ɵɵtext"](7, "Benvenuto");
       _angular_core__WEBPACK_IMPORTED_MODULE_4__["ɵɵelementEnd"]();
-      _angular_core__WEBPACK_IMPORTED_MODULE_4__["ɵɵelementStart"](8, "span", 7);
+      _angular_core__WEBPACK_IMPORTED_MODULE_4__["ɵɵelementStart"](8, "span", 6);
       _angular_core__WEBPACK_IMPORTED_MODULE_4__["ɵɵtext"](9, "Effettua l'accesso");
       _angular_core__WEBPACK_IMPORTED_MODULE_4__["ɵɵelementEnd"]()();
-      _angular_core__WEBPACK_IMPORTED_MODULE_4__["ɵɵelementStart"](10, "div")(11, "form", 8);
+      _angular_core__WEBPACK_IMPORTED_MODULE_4__["ɵɵelementStart"](10, "div")(11, "form", 7);
       _angular_core__WEBPACK_IMPORTED_MODULE_4__["ɵɵlistener"]("ngSubmit", function LoginComponent_Template_form_ngSubmit_11_listener() {
         return ctx.login();
       });
-      _angular_core__WEBPACK_IMPORTED_MODULE_4__["ɵɵelementStart"](12, "label", 9);
+      _angular_core__WEBPACK_IMPORTED_MODULE_4__["ɵɵelementStart"](12, "label", 8);
       _angular_core__WEBPACK_IMPORTED_MODULE_4__["ɵɵtext"](13, "Email");
       _angular_core__WEBPACK_IMPORTED_MODULE_4__["ɵɵelementEnd"]();
-      _angular_core__WEBPACK_IMPORTED_MODULE_4__["ɵɵelement"](14, "input", 10);
-      _angular_core__WEBPACK_IMPORTED_MODULE_4__["ɵɵelementStart"](15, "label", 11);
+      _angular_core__WEBPACK_IMPORTED_MODULE_4__["ɵɵelement"](14, "input", 9);
+      _angular_core__WEBPACK_IMPORTED_MODULE_4__["ɵɵelementStart"](15, "label", 10);
       _angular_core__WEBPACK_IMPORTED_MODULE_4__["ɵɵtext"](16, "Password");
       _angular_core__WEBPACK_IMPORTED_MODULE_4__["ɵɵelementEnd"]();
-      _angular_core__WEBPACK_IMPORTED_MODULE_4__["ɵɵelement"](17, "p-password", 12);
-      _angular_core__WEBPACK_IMPORTED_MODULE_4__["ɵɵelementStart"](18, "div", 13)(19, "a", 14);
+      _angular_core__WEBPACK_IMPORTED_MODULE_4__["ɵɵelement"](17, "p-password", 11);
+      _angular_core__WEBPACK_IMPORTED_MODULE_4__["ɵɵelementStart"](18, "div", 12)(19, "a", 13);
       _angular_core__WEBPACK_IMPORTED_MODULE_4__["ɵɵtext"](20, "Password dimenticata?");
       _angular_core__WEBPACK_IMPORTED_MODULE_4__["ɵɵelementEnd"]()();
-      _angular_core__WEBPACK_IMPORTED_MODULE_4__["ɵɵelement"](21, "button", 15);
+      _angular_core__WEBPACK_IMPORTED_MODULE_4__["ɵɵelement"](21, "button", 14);
       _angular_core__WEBPACK_IMPORTED_MODULE_4__["ɵɵelementEnd"]()()()()()();
     }
     if (rf & 2) {
